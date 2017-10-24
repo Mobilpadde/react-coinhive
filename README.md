@@ -72,37 +72,46 @@ you can use the `Shortlink` exported from this package.
 ### Usage
 
 It's quite simple to use, simply import `{ Shortlink }` from `react-coinhive`,
-provide your secret site key and call the curried function, simple as that!
+provide your secret site key and call out the curried class, simple as that!
 
 #### Example
 
 ```jsx harmony
 import { Shortlink } from 'react-coinhive';
 
-(async () => {
-    const linker = Shortlink(SECRET);
-    
-    console.log(await linker('http://mcordes.me/'));
-})
-```
+const SECRET = '';
+const Linker = Shortlink(SECRET, true);
 
-But, what do you do if you're on a dev-server?
-Well It's quite simple as well,
-
-```jsx harmony
-import { Shortlink } from 'react-coinhive';
-
-(async () => {
-    const linker = Shortlink(SECRET, true);
-    
-    console.log(await linker('http://mcordes.me/'));
-})
+<Linker
+    text={'react-coinhive Demo'}
+    origin={'https://github.com/dragma/react-coinhive'}
+    showOriginIfError={true}
+    useRouterLink={false}
+    numHashes={256}
+/>
 ```
 
 BAM! It's now working! 
 (It'll be using [cors-anywhere](https://cors-anywhere.herokuapp.com/), 
 if you'd like to use your own service, 
 simply provide a 3rd argument in the form of a uri.)
+
+#### Props
+
+origin: PropTypes.string.isRequired,
+text: PropTypes.string.isRequired,
+showOriginIfError: PropTypes.bool.isRequired,
+useRouterLink: PropTypes.bool.isRequired,
+
+numHashes: PropTypes.number,
+target: PropTypes.string,
+
+* `origin`: The link to be shortened
+* `text`: Text for the shortened link
+* `showOriginIfError`: If the origin link should be used if you get some error while shortening
+* `useRouterLink`: Use `react-router-dom` link instead of an a-tag
+* `numHashes`: Number of hashes to complete before proceeding
+* `target`: Target-prop, same as for all links
 
 ## Disclaimer
 
