@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 
-import CoinHive from '../../src'
+import CoinHive, { Shortlink } from '../../src'
+
+const SECRET = '';
+const Linker = Shortlink(SECRET, true);
 
 class Demo extends Component {
   state = {
@@ -13,7 +16,15 @@ class Demo extends Component {
 
   render() {
     return <div>
-      <h1>react-coinhive Demo</h1>
+      <h1>
+        <Linker
+            text={'react-coinhive Demo'}
+            origin={'https://github.com/dragma/react-coinhive'}
+            showOriginIfError={true}
+            useRouterLink={false}
+            numHashes={256}
+        />
+      </h1>
       <div>
         Start:
         <input

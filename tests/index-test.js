@@ -4,8 +4,6 @@ import {render, unmountComponentAtNode} from 'react-dom'
 
 import CoinHiveClient, { Shortlink } from 'src/index'
 
-const SECRET = '';
-
 describe('Component', () => {
   let node
 
@@ -23,12 +21,3 @@ describe('Component', () => {
     })
   })
 })
-
-describe('Shortlink', () => {
-    it('returns a link', () => {
-        const linker = new Shortlink(SECRET, true);
-        linker('http://mcordes.me/')
-            .then(res => expect(JSON.stringify(res)).toContain("success"))
-            .catch(err => expect(false).toBe(true));
-    });
-});
